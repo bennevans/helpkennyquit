@@ -51,8 +51,10 @@ def getVector(start, end, offset, scal = 0.1):
     return ((end[0] - start[0])*scal + offset, (end[1] - start[1])*scal)
 
 def timeInAir(ball, y):
-    print 'time', (ball[1] - y) * -10
-    return (ball[1] - y)*-10 + 100000000
+    term1 = (ball[1] - y) * -1e2
+    term2 = 1.15e9
+    print 't1', term1, 't2', term2 
+    return term1 + term2
 
 def shoot(ball, hoop, velocity):
     print 'shoot', ball, hoop, velocity
@@ -90,7 +92,7 @@ while True:
     smaller = cv2.resize(screen, (width / 3, height / 3), interpolation=cv2.INTER_CUBIC)
     cv2.imshow('screen', smaller)
 
-    k = cv2.waitKey(200) 
+    k = cv2.waitKey(100) 
 
     if k & 0xFF == 27:
         break
